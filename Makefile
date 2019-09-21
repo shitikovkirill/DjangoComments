@@ -19,7 +19,7 @@ test:
 	$(DOCKER_TEST) up
 
 lint:
-	$(DOCKER_TEST) run --rm web pre-commit run --all-files --show-diff-on-failure
+	$(DOCKER_$(ENV)) exec web poetry run pre-commit run --all-files --show-diff-on-failure
 
 user:
 	$(DOCKER_$(ENV)) run --rm web python manage.py createsuperuser
