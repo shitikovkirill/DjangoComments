@@ -22,4 +22,8 @@ lint:
 	$(DOCKER_TEST) run --rm web tox -e lint
 
 user:
-	$(DOCKER_TEST) run --rm web /app/venv/bin/python /app/manage.py createsuperuser
+	$(DOCKER_$(ENV)) run --rm web python manage.py createsuperuser
+
+migrate:
+	$(DOCKER_$(ENV)) run --rm web python manage.py makemigrations
+	$(DOCKER_$(ENV)) run --rm web python manage.py migrate
