@@ -1,7 +1,7 @@
 version: "3"
 services:
   web:
-    command: "python manage.py test apps"
+    command: "python manage.py test"
     volumes:
       - .:/app
     environment:

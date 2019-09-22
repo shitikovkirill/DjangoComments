@@ -5,8 +5,11 @@ description = ""
 authors = ["Kirill Shitikov <shitikovkirillt@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 django = "^2.2"
+djangorestframework = "^3.9"
+drf-jwt = "^1.13"
+drf-access-policy = "^0.5.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"

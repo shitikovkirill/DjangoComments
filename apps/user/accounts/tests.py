@@ -1,7 +1,7 @@
 from django.test import TestCase
 from unittest.mock import MagicMock
 
-from apps.accounts.models import MyUserManager
+from apps.user.accounts.models import MyUserManager
 
 
 class AccountsTestCase(TestCase):
