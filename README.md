@@ -14,6 +14,11 @@ make user
 make up
 ```
 
+Run bash
+```
+make bash
+```
+
 ## Test
 ```
 make test
