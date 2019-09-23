@@ -30,3 +30,6 @@ user:
 migrate:
 	$(DOCKER_$(ENV)) run --rm web python manage.py makemigrations
 	$(DOCKER_$(ENV)) run --rm web python manage.py migrate
+
+down:
+	$(DOCKER_$(ENV)) down -v

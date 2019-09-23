@@ -16,6 +16,8 @@ services:
       DB_PASSWORD: ""
 
   workerserver:
+    volumes:
+      - .:/app
     environment:
       DEBUG: "true"
       SECRET_KEY: "development_key"
@@ -24,3 +26,4 @@ services:
       DB_NAME: "postgres"
       DB_USER: "postgres"
       DB_PASSWORD: ""
+      DOMAIN: "http://localhost:8000"

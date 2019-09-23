@@ -8,7 +8,6 @@ repos:
       - id: trailing-whitespace
       - id: check-yaml
       - id: check-added-large-files
-      - id: name-tests-test
   - repo: https://github.com/asottile/pyupgrade
     rev: v1.22.1
     hooks:

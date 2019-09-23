@@ -142,3 +142,7 @@ CHANNEL_LAYERS = {
         "CONFIG": {"hosts": [("redis", 6379)]},
     }
 }
+
+DOMAIN = os.environ.get("DOMAIN")
+
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "mail")

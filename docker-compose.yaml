@@ -12,7 +12,7 @@ services:
     build:
       context: .
       dockerfile: dockers/python/Dockerfile
-    command: "python manage.py runworker"
+    command: "python manage.py runworker confirmation_email"
     depends_on:
       - "database"
       - "redis"

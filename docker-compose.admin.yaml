@@ -9,7 +9,7 @@ services:
     ports:
     - "8001:80"
     depends_on:
-    - "db"
+    - "database"
 
   mail:
     image: djfarrelly/maildev

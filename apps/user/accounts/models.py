@@ -1,7 +1,13 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
+
+channel_layer = get_channel_layer()
 
 
 class MyUserManager(BaseUserManager):
@@ -25,7 +31,12 @@ class MyUserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
-        return self._create_user(email, password, **extra_fields)
+        user = self._create_user(email, password, **extra_fields)
+        async_to_sync(channel_layer.send)(
+            "confirmation_email", {"type": "send_email", "user_id": user.id}
+        )
+
+        return user
 
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault("is_staff", True)
@@ -41,6 +52,7 @@ class MyUserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
+    email_confirmed = models.BooleanField(default=False)
     is_staff = models.BooleanField(
         _("staff status"),
         default=False,
@@ -65,3 +77,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.email
+
+
+
+class Profile(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    name = models.CharField(max_length=250)
+    surname = models.CharField(max_length=250, null=True)
+    age = models.PositiveIntegerField(null=True)

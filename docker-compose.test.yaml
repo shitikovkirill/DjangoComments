@@ -6,3 +6,7 @@ services:
       - .:/app
     environment:
       DJANGO_SETTINGS_MODULE: "config.settings.testing"
+      DB_HOST: "database"
+      DB_NAME: "postgres"
+      DB_USER: "postgres"
+      DB_PASSWORD: ""
