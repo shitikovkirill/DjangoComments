@@ -1,7 +1,7 @@
 version: "3"
 services:
   web:
-    command: "python manage.py runserver 0.0.0.0:8000"
+    command: "daphne -b 0.0.0.0 -p 8000 config.asgi:application"
     ports:
       - 8000:8000
     volumes:

@@ -9,6 +9,9 @@ CONT=web
 up:
 	$(DOCKER_$(ENV)) up
 
+pull:
+	$(DOCKER_$(ENV)) pull
+
 build:
 	$(DOCKER_$(ENV)) build
 

@@ -10,3 +10,17 @@ services:
       DEBUG: "true"
       SECRET_KEY: "development_key"
       DJANGO_SETTINGS_MODULE: "config.settings.development"
+      DB_HOST: "database"
+      DB_NAME: "postgres"
+      DB_USER: "postgres"
+      DB_PASSWORD: ""
+
+  workerserver:
+    environment:
+      DEBUG: "true"
+      SECRET_KEY: "development_key"
+      DJANGO_SETTINGS_MODULE: "config.settings.development"
+      DB_HOST: "database"
+      DB_NAME: "postgres"
+      DB_USER: "postgres"
+      DB_PASSWORD: ""
