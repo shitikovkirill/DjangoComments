@@ -11,7 +11,6 @@ channel_layer = get_channel_layer()
 
 @receiver(post_save, sender=get_user_model())
 def send_confirmation_email(sender, instance, created, **kwargs):
-    print(kwargs)
     user = instance
     if created and not user.email_confirmed:
         async_to_sync(channel_layer.send)(

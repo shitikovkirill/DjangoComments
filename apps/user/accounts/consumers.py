@@ -9,8 +9,6 @@ from apps.user.authorisation.tokens import account_activation_token
 
 class ConfirmationEmailConsumer(SyncConsumer):
     def send_email(self, message):
-        print("ConfirmationEmailConsumer.send_email")
-        print(message)
         user = get_user_model().objects.get(id=message["user_id"])
 
         mail_subject = "Activate your blog account."
