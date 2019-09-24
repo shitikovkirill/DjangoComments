@@ -15,3 +15,7 @@ services:
       DJANGO_SETTINGS_MODULE: "config.settings.production"
     env_file:
       - .env
+
+  workerserver:
+    environment:
+      DJANGO_SETTINGS_MODULE: "config.settings.production"

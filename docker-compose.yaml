@@ -1,6 +1,7 @@
 version: "3"
 services:
   web:
+    image: shitikovkirill/python_planeks
     build:
       context: .
       dockerfile: dockers/python/Dockerfile
@@ -9,6 +10,7 @@ services:
       - "redis"
 
   workerserver:
+    image: shitikovkirill/python_planeks
     build:
       context: .
       dockerfile: dockers/python/Dockerfile
