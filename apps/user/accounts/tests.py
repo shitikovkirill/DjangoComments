@@ -1,11 +1,15 @@
 from django.test import TestCase
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
+
 
 from apps.user.accounts.models import MyUserManager
 
 
 class AccountsTestCase(TestCase):
-    def test_create_user(self):
+
+    @patch('apps.user.accounts.models.async_to_sync')
+    @patch('apps.user.accounts.models.get_channel_layer')
+    def test_create_user(self, async_to_sync, get_channel_layer):
         user = MagicMock()
         email = "test@mail.com"
         password = "test"
@@ -21,7 +25,9 @@ class AccountsTestCase(TestCase):
         user.save.assert_called_once()
         self.assertIs(created_user, user)
 
-    def test_create_super_user(self):
+    @patch('apps.user.accounts.models.async_to_sync')
+    @patch('apps.user.accounts.models.get_channel_layer')
+    def test_create_super_user(self, async_to_sync, get_channel_layer):
         user = MagicMock()
         email = "test@mail.com"
         password = "test"
