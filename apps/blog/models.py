@@ -28,9 +28,9 @@ class Attachment(models.Model):
     version = models.IntegerField(default=0)
     upload_date = models.DateTimeField(auto_now=True, db_index=True)
     owner = models.ForeignKey(
-        get_user_model(), on_delete=models.PROTECT, related_name="uploaded_files"
+        get_user_model(), on_delete=models.PROTECT, related_name="attachments"
     )
     post = models.ForeignKey(
-        Post, on_delete=models.PROTECT, related_name="uploaded_files"
+        Post, on_delete=models.PROTECT, related_name="attachments"
     )
     size = models.IntegerField(default=0)

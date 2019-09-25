@@ -59,8 +59,8 @@ class UserTestCase(TestCase):
         data = {"file": file, "post": self.publish_post.id}
         self.client.credentials(HTTP_AUTHORIZATION="Bearer " + self.author_user_token)
         response = self.client.post("/api/files/", data, format="multipart")
-        print(response.content)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(1, len(self.publish_post.attachments.all()))
 
         _io = StringIO()
         _io.write("foo2")
@@ -70,5 +70,5 @@ class UserTestCase(TestCase):
         data = {"file": file, "post": self.publish_post.id}
         self.client.credentials(HTTP_AUTHORIZATION="Bearer " + self.author_user_token)
         response = self.client.post("/api/files/", data, format="multipart")
-        print(response.content)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(2, len(self.publish_post.attachments.all()))
