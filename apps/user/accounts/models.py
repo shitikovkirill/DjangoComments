@@ -80,7 +80,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        primary_key=True,
+        related_name="profile",
+    )
     name = models.CharField(max_length=250)
     surname = models.CharField(max_length=250, null=True)
     age = models.PositiveIntegerField(null=True)

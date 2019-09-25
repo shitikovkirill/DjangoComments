@@ -26,11 +26,18 @@ class Attachment(models.Model):
     file = models.FileField()
     name = models.CharField(max_length=100)
     version = models.IntegerField(default=0)
-    upload_date = models.DateTimeField(auto_now=True, db_index=True)
+    upload_date = models.DateTimeField(auto_now_add=True, db_index=True)
     owner = models.ForeignKey(
         get_user_model(), on_delete=models.PROTECT, related_name="attachments"
     )
-    post = models.ForeignKey(
-        Post, on_delete=models.PROTECT, related_name="attachments"
-    )
+    post = models.ForeignKey(Post, on_delete=models.PROTECT, related_name="attachments")
     size = models.IntegerField(default=0)
+
+
+class Comment(models.Model):
+    text = models.CharField(max_length=255)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    parent = models.ForeignKey(
+        "self", on_delete=models.CASCADE, related_name="children"
+    )
+    created = models.DateTimeField(auto_now_add=True)
