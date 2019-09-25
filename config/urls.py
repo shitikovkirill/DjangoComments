@@ -1,22 +1,15 @@
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
-from apps.user.authorisation.views import UserViewSet
-from apps.blog.views import PostViewSet, AttachmentViewSet
 from rest_framework_jwt import views as jwtViews
 from django.conf import settings
-
-router = routers.DefaultRouter()
-router.register(r"users", UserViewSet)
-router.register(r"posts", PostViewSet)
-router.register(r"files", AttachmentViewSet)
 
 api_patterns = (
     [
         path("token/", jwtViews.obtain_jwt_token),
         path("token-refresh/", jwtViews.refresh_jwt_token),
         path("token-verify/", jwtViews.verify_jwt_token),
-        path("", include(router.urls)),
+        path("", include("apps.user.authorisation.urls")),
+        path("", include("apps.blog.urls")),
     ],
     "api",
 )
