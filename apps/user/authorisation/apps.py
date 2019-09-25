@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class AuthorizationConfig(AppConfig):
-    name = "accounts"
+    name = "apps.user.authorisation"

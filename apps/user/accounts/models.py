@@ -79,7 +79,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-
 class Profile(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     name = models.CharField(max_length=250)

@@ -9,5 +9,5 @@ class TokenValidator:
 
     def __call__(self, value):
         if not account_activation_token.check_token(self.user, value):
-            message = 'Token is not valid.'
+            message = "Token is not valid."
             raise serializers.ValidationError(message)

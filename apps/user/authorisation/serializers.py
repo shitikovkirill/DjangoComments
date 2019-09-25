@@ -29,7 +29,6 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class TokenSerializer(serializers.Serializer):
-
     def __init__(self, *, user, **kwargs):
         super().__init__(**kwargs)
         self.user = user

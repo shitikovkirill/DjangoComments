@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
-from django.core.signals import request_finished
 from django.dispatch import receiver
 
 from asgiref.sync import async_to_sync

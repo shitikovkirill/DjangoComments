@@ -7,12 +7,13 @@ from django_mailgun import MailgunAPIError
 
 from apps.user.authorisation.tokens import account_activation_token
 import logging
+
 logger = logging.getLogger(__name__)
 
 
 class ConfirmationEmailConsumer(SyncConsumer):
     def send_email(self, message):
-        logger.info('ConfirmationEmailConsumer - send_email')
+        logger.info("ConfirmationEmailConsumer - send_email")
         user = get_user_model().objects.get(id=message["user_id"])
 
         mail_subject = "Activate your blog account."
@@ -29,8 +30,7 @@ class ConfirmationEmailConsumer(SyncConsumer):
             email = EmailMessage(mail_subject, message, to=[user.email])
             email.send()
         except MailgunAPIError as ex:
-            error_request, =ex.args
+            error_request, = ex.args
             data = error_request.json()
-            logger.critical("Mailgun server error: {}".format(data['message']))
-            raise MailgunAPIError(data['message'])
-
+            logger.critical("Mailgun server error: {}".format(data["message"]))
+            raise MailgunAPIError(data["message"])

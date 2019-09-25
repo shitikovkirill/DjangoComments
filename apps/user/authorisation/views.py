@@ -18,7 +18,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [UserAccessPolicy]
 
-    @action(methods=['post'], detail=True, url_path='confirm-email')
+    @action(methods=["post"], detail=True, url_path="confirm-email")
     def confirm_email(self, request, pk):
         user = get_object_or_404(get_user_model(), id=pk)
         token_ser = TokenSerializer(user=user, data=request.data)
