@@ -37,6 +37,9 @@ class Attachment(models.Model):
 class Comment(models.Model):
     text = models.CharField(max_length=255)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, related_name="commentator"
+    )
     parent = models.ForeignKey(
         "self", on_delete=models.CASCADE, related_name="children"
     )

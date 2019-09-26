@@ -1,6 +1,7 @@
 import os
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from apps.blog.models import Post, Attachment
+from apps.blog.models import Post, Attachment, Comment
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -24,3 +25,13 @@ class AttachmentSerializer(serializers.ModelSerializer):
         validated_data["name"] = os.path.splitext(validated_data["file"].name)[0]
         validated_data["size"] = validated_data["file"].size
         return validated_data
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
+    user = serializers.PrimaryKeyRelatedField(queryset=get_user_model().objects.all())
+    parent = serializers.PrimaryKeyRelatedField(queryset=Comment.objects.all())
+
+    class Meta:
+        model = Comment
+        fields = ("id", "text")

@@ -6,6 +6,4 @@ router = routers.DefaultRouter()
 router.register(r"posts", PostViewSet)
 router.register(r"files", AttachmentViewSet)
 
-urlpatterns = [
-    path('', include(router.urls)),
-]
+urlpatterns = [path("", include(router.urls))]
