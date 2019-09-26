@@ -1,3 +1,4 @@
 /.env
-/var/
+/var/*
+!/var/http-client
 __pycache__
