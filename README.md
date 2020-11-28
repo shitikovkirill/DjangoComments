@@ -1,4 +1,4 @@
-# Planeks Test
+# DjangoComments
 
 ## Install
 
